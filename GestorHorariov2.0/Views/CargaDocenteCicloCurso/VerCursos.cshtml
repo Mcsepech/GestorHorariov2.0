@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Cursos Disponible";
+    List<GestorHorariov2._0.Models.Ciclo> ciclo = ViewBag.Ciclo;
+}
+
+<h2>Ciclos disponibles:</h2>
+
+<div class="card">
+    <div class="card-body content-center">
+        <ul class="list-group list-group-flush">
+            @foreach (var a in ciclo)
+            {
+                <li class="list-group-item"><a href="~/CargaHorariaDocente/DetalleCurso/@a.ciclo_id" class="btn btn-primary">@a.ciclo_nombre</a><br /></li>
+            }
+        </ul>
+    </div>  
+</div>
+

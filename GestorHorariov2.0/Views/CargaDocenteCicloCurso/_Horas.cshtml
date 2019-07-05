@@ -1,0 +1,21 @@
+﻿
+@model GestorHorariov2._0.Models.CargaDocenteCicloCurso
+
+@{
+    Layout = null;
+}
+
+<div class="form-group">
+    @Html.Label("Horas Ocupadas")
+    @*@Html.TextBoxFor(model => model.hora_ocu, new { @class = .....)*@
+    <input type="text" id="hora_ocu" style="padding-left:5px;" disabled value="@Model.hora_ocu">
+</div>
+
+<div class="form-group">
+    @Html.Label("Horas Libres")
+    @*@Html.TextBoxFor(model => model.hora_lib, new { @class = .....)*@
+
+    <input type="text" id="hora_lib" style="padding-left:5px;" disabled value="@Model.hora_lib">
+</div>
+
+

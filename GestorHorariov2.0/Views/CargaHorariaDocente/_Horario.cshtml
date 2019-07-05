@@ -1,0 +1,245 @@
+﻿
+@{
+    Layout = null;
+
+    IEnumerable<GestorHorariov2._0.Models.CargaHorariaDocente> Lunes = ViewBag.Lunes;
+    IEnumerable<GestorHorariov2._0.Models.CargaHorariaDocente> Martes = ViewBag.Martes;
+    IEnumerable<GestorHorariov2._0.Models.CargaHorariaDocente> Miercoles = ViewBag.Miercoles;
+    IEnumerable<GestorHorariov2._0.Models.CargaHorariaDocente> Jueves = ViewBag.Jueves;
+    IEnumerable<GestorHorariov2._0.Models.CargaHorariaDocente> Viernes = ViewBag.Viernes;
+    IEnumerable<GestorHorariov2._0.Models.CargaHorariaDocente> Sabado = ViewBag.Sabado;
+    IEnumerable<GestorHorariov2._0.Models.HoraEntrada> Horas = ViewBag.Horas;
+    Random r = new Random();
+    int aleatorio1 = r.Next(1, 8);
+    int aleatorio2 = r.Next(1, 8);
+    int aleatorio3 = r.Next(1, 8);
+    int aleatorio4 = r.Next(1, 8);
+    int aleatorio5 = r.Next(1, 8);
+    int aleatorio6 = r.Next(1, 8);
+    int aleatorio7 = r.Next(1, 8);
+    int aleatorio8 = r.Next(1, 8);
+    int al = 0;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <link href="~/assets/calendario/assets/css/style.css" rel="stylesheet" />
+    <title>Layout</title>
+</head>
+<body style="background-image: url('~/assets/calendario/assets/images/slideshow-img-1.jpg') ;">
+    <nav class="">
+
+    </nav>
+    <div class="container" style="background-color: #fff">
+        <div class="cd-schedule cd-schedule--loading margin-top--lg margin-bottom--lg js-cd-schedule">
+            <div class="cd-schedule__timeline">
+                <ul>
+                    @foreach (var h in Horas)
+                    {
+                        <li><span>@h.entrada_hora</span></li>
+                    }
+                    @*<li><span>08:00</span></li>
+                        <li><span>08:30</span></li>
+                        <li><span>09:00</span></li>
+                        <li><span>09:30</span></li>
+                        <li><span>10:00</span></li>
+                        <li><span>10:30</span></li>
+                        <li><span>11:00</span></li>
+                        <li><span>11:30</span></li>
+                        <li><span>12:00</span></li>
+                        <li><span>12:30</span></li>
+                        <li><span>13:00</span></li>
+                        <li><span>13:30</span></li>
+                        <li><span>14:00</span></li>
+                        <li><span>14:30</span></li>
+                        <li><span>15:00</span></li>
+                        <li><span>15:30</span></li>
+                        <li><span>16:00</span></li>
+                        <li><span>16:30</span></li>
+                        <li><span>17:00</span></li>
+                        <li><span>17:30</span></li>
+                        <li><span>18:00</span></li>
+                        <li><span>18:30</span></li>
+                        <li><span>19:00</span></li>
+                        <li><span>19:30</span></li>
+                        <li><span>20:00</span></li>
+                        <li><span>20:30</span></li>
+                        <li><span>21:00</span></li>
+                        <li><span>21:30</span></li>*@
+                </ul>
+            </div> <!-- .cd-schedule__timeline -->
+
+            <div class="cd-schedule__events">
+                <ul>
+                    <li class="cd-schedule__group">
+                        <div class="cd-schedule__top-info"><span class="cd-schedule__top-info btn btn--lg btn btn--primary">Lunes</span></div>
+                        <ul>
+                            @foreach (var lu in Lunes)
+                            {
+                                <li class="cd-schedule__event">
+                                    <a data-start="@lu.HoraEntrada.entrada_hora.ToString(@"hh\:mm")" data-end="@lu.HoraSalida.salida_hora.ToString(@"hh\:mm")" data-content="event-@lu.CargaDocenteCicloCurso.Docente.docente_nombre" data-event="event-@aleatorio1" style="text-align:center">
+                                        <em class="cd-schedule__name" style="text-align:center">@lu.CargaDocenteCicloCurso.Curso.curso_nombre</em>
+                                        <em class="cd-schedule__name" hidden>@lu.cargaDo_id</em>
+                                        <em class="cd-schedule__name" hidden>@lu.carga_id</em>
+                                        <em class="cd-schedule__name" hidden>@lu.HoraEntrada.entrada_hora</em>
+                                        <em class="cd-schedule__name" hidden>@lu.HoraSalida.salida_hora</em>
+                                        <em class="cd-schedule__name" style="text-align:center">@lu.Ambiente.ambiente_nombre</em>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="cd-schedule__group">
+                        <div class="cd-schedule__top-info"><span class="cd-schedule__top-info btn btn--lg btn btn--primary">Martes</span></div>
+                        <ul>
+                            @foreach (var ma in Martes)
+                            {
+                                <li class="cd-schedule__event">
+                                    <a data-start="@ma.HoraEntrada.entrada_hora.ToString(@"hh\:mm")" data-end="@ma.HoraSalida.salida_hora.ToString(@"hh\:mm")" data-content="event-@ma.CargaDocenteCicloCurso.Docente.docente_nombre" data-event="event-@aleatorio2" style="text-align:center">
+                                        <em class="cd-schedule__name" style="text-align:center">@ma.CargaDocenteCicloCurso.Curso.curso_nombre</em>
+                                        <em class="cd-schedule__name" hidden>@ma.cargaDo_id</em>
+                                        <em class="cd-schedule__name" style="text-align:center">@ma.Ambiente.ambiente_nombre</em>
+
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="cd-schedule__group">
+                        <div class="cd-schedule__top-info"><span class="cd-schedule__top-info btn btn--lg btn btn--primary">Miercoles</span></div>
+                        <ul>
+                            @foreach (var mi in Miercoles)
+                            {
+                                <li class="cd-schedule__event">
+                                    <a data-start="@mi.HoraEntrada.entrada_hora.ToString(@"hh\:mm")" data-end="@mi.HoraSalida.salida_hora.ToString(@"hh\:mm")" data-content="event-@mi.CargaDocenteCicloCurso.Docente.docente_nombre" data-event="event-@aleatorio3" style="text-align:center">
+                                        <em class="cd-schedule__name" style="text-align:center">@mi.CargaDocenteCicloCurso.Curso.curso_nombre</em>
+                                        <em class="cd-schedule__name" hidden>@mi.cargaDo_id</em>
+                                        <em class="cd-schedule__name" style="text-align:center">@mi.Ambiente.ambiente_nombre</em>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="cd-schedule__group">
+                        <div class="cd-schedule__top-info"><span class="cd-schedule__top-info btn btn--lg btn btn--primary">Jueves</span></div>
+                        <ul>
+                            @foreach (var ju in Jueves)
+                            {
+                                <li class="cd-schedule__event">
+                                    <a data-start="@ju.HoraEntrada.entrada_hora.ToString(@"hh\:mm")" data-end="@ju.HoraSalida.salida_hora.ToString(@"hh\:mm")" data-content="event-@ju.CargaDocenteCicloCurso.Docente.docente_nombre" data-event="event-@aleatorio4" style="text-align:center">
+                                        <em class="cd-schedule__name" style="text-align:center">@ju.CargaDocenteCicloCurso.Curso.curso_nombre</em>
+                                        <em class="cd-schedule__name" hidden>@ju.cargaDo_id</em>
+                                        <em class="cd-schedule__name" style="text-align:center">@ju.Ambiente.ambiente_nombre</em>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="cd-schedule__group">
+                        <div class="cd-schedule__top-info"><span class="cd-schedule__top-info btn btn--lg btn btn--primary">Viernes</span></div>
+                        <ul>
+                            @foreach (var vi in Viernes)
+                            {
+                                <li class="cd-schedule__event">
+                                    <a data-start="@vi.HoraEntrada.entrada_hora.ToString(@"hh\:mm")" data-end="@vi.HoraSalida.salida_hora.ToString(@"hh\:mm")" data-content="event-@vi.CargaDocenteCicloCurso.Docente.docente_nombre" data-event="event-@aleatorio5" style="text-align:center">
+                                        <em class="cd-schedule__name" style="text-align:center">@vi.CargaDocenteCicloCurso.Curso.curso_nombre</em>
+                                        <em class="cd-schedule__name" hidden>@vi.cargaDo_id</em>
+                                        <em class="cd-schedule__name" style="text-align:center">@vi.Ambiente.ambiente_nombre</em>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="cd-schedule__group">
+                        <div class="cd-schedule__top-info"><span class="cd-schedule__top-info btn btn--lg btn btn--primary">Sabado</span></div>
+                        <ul>
+                            @foreach (var sa in Sabado)
+                            {
+                                <li class="cd-schedule__event">
+                                    <a data-start="@sa.HoraEntrada.entrada_hora.ToString(@"hh\:mm")" data-end="@sa.HoraSalida.salida_hora.ToString(@"hh\:mm")" data-content="event-@sa.CargaDocenteCicloCurso.Docente.docente_nombre" data-event="event-@aleatorio6" style="text-align:center">
+                                        <em class="cd-schedule__name" style="text-align:center">@sa.CargaDocenteCicloCurso.Curso.curso_nombre</em>
+                                        <em class="cd-schedule__name" hidden>@sa.cargaDo_id</em>
+                                        <em class="cd-schedule__name" hidden>@sa.carga_id</em>
+                                        <em class="cd-schedule__name" hidden>@sa.HoraEntrada.entrada_hora</em>
+                                        <em class="cd-schedule__name" hidden>@sa.HoraSalida.salida_hora</em>
+                                        <em class="cd-schedule__name" style="text-align:center">@sa.Ambiente.ambiente_nombre</em>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="cd-schedule-modal">
+                <header class="cd-schedule-modal__header">
+                    <div class="cd-schedule-modal__content">
+                        <span class="cd-schedule-modal__date"></span>
+                        <h3 class="cd-schedule-modal__name"></h3>
+                        <h3 class="cd-schedule-modal__button" hidden></h3>
+
+                        <h3 class="cd-schedule-modal__button1" hidden></h3>
+                        <h3 class="cd-schedule-modal__button2" hidden></h3>
+                        <h3 class="cd-schedule-modal__button3" hidden></h3>
+                        <button id="btnEliminar" onClick="enviar_variable(@al);">Eliminar</button>
+                        <script type="text/javascript">
+                            function enviar_variable(r) {
+                                var hora_libre = $('#hora_lib').val()
+                                var hora_ocupada = $('#hora_ocu').val()
+                                var cargaDo_id = $('.cd-schedule-modal__button').text();
+
+                                var carga_id = $('.cd-schedule-modal__button1').text();
+                                var hora_entrada = $('.cd-schedule-modal__button2').text();
+                                var hora_salida = $('.cd-schedule-modal__button3').text();
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: '@Url.Action("Eliminar", "CargaHorariaDocente")',
+                                    data: {
+                                        cargaDo_id: cargaDo_id,
+                                        hora_entrada: hora_entrada,
+                                        hora_salida: hora_salida,
+                                        hora_libre: hora_libre,
+                                        hora_ocupada: hora_ocupada,
+                                        carga_id: carga_id
+                                    },
+                                    success: function () {
+                                        alert("Eliminado con éxito.");
+                                        location.reload();
+                                    },
+                                    error: function () {
+                                        alert("Error al eliminar.");
+                                    }
+                                })
+                            }
+                        </script>
+                    </div>
+                    <div class="cd-schedule-modal__header-bg"></div>
+                </header>
+
+                <div class="cd-schedule-modal__body">
+                    <div class="cd-schedule-modal__event-info"></div>
+                    <div class="cd-schedule-modal__body-bg"></div>
+                </div>
+
+                <a href="#0" class="cd-schedule-modal__close text--replace">Close</a>
+            </div>
+
+            <div class="cd-schedule__cover-layer"></div>
+        </div> <!-- .cd-schedule -->
+    </div>
+
+    <script src="~/assets/calendario/assets/js/util.js"></script>
+    <script src="~/assets/calendario/assets/js/main.js"></script>
+    <script src="~/assets/calendario/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/calendario/assets/js/plugins/jquery.validate.min.js"></script>
+</body>
+</html>
+
+
+
+

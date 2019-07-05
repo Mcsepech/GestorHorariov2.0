@@ -1,0 +1,59 @@
+﻿@model GestorHorariov2._0.Models.Docente
+@{
+    List<GestorHorariov2._0.Models.Docente> docente = ViewBag.Docente;
+    ViewBag.Title = "AgregarEditar";
+}
+
+<h2 class="card alert-light text-center" style="font-size: 48px;">Gestion de Docente</h2>
+
+<nav aria-label="breadcrumb" style="font-size: 24px">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/Docente/Index">Docente</a>
+        </li>
+        <li class="breadcrumb-item active">
+            @(Model.docente_id > 0 ? Model.docente_nombre : "Nuevo Registro")
+        </li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Guardar", "Docente", FormMethod.Post, new { id = "frm-docente" }))
+{
+    @Html.HiddenFor(x => x.docente_id)
+    <div class="card">
+        <div class="card-header">
+            Informacion del Usuario
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.docente_id, new { @class = "form-control", disabled = true })
+            </div>
+            <div class="form-group">
+                @Html.Label("Codigo")
+                @Html.TextBoxFor(x => x.docente_codigo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.docente_codigo, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Nombre")
+                @Html.TextBoxFor(x => x.docente_nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.docente_nombre, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Estado")
+                <select name="docente_estado" class="form-control">
+                    <option @(Model.docente_estado == "" ? "Selected" : "") value="">--Seleccione--</option>
+                    <option @(Model.docente_estado == "A" ? "Selected" : "") value="A">Activo</option>
+                    <option @(Model.docente_estado == "I" ? "Selected" : "") value="I">Inactivo</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="~/Docente" class="btn btn-danger">Cancelar</a>
+    </div>
+}

@@ -1,0 +1,32 @@
+﻿@model GestorHorariov2._0.Models.Docente
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/Docente/Index">Docente</a>
+        </li>
+        <li class="breadcrumb-item active">@Model.docente_nombre</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header">
+        Información detallada de Docente
+    </div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.docente_id</dd>
+            <dt>Codigo</dt>
+            <dd>@Model.docente_codigo</dd>
+            <dt>Nombre</dt>
+            <dd>@Model.docente_nombre</dd>
+            <dt>Estado</dt>
+            <dd>@(Model.docente_estado == "A" ? "Activo" : "Inactivo")</dd>
+        </dl>
+    </div>
+</div>
+

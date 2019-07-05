@@ -1,0 +1,54 @@
+﻿@model GestorHorariov2._0.Models.HoraSalida
+@{
+    List<GestorHorariov2._0.Models.HoraSalida> horasalida = ViewBag.HoraSalida;
+    ViewBag.Title = "AgregarEditar";
+}
+
+<h2 class="card alert-light text-center" style="font-size: 48px;">Gestion de HoraSalida</h2>
+
+<nav aria-label="breadcrumb" style="font-size: 24px">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/HoraSalida/Index">HoraSalida</a>
+        </li>
+        <li class="breadcrumb-item active">
+            @(Model.salida_id > 0 ? Model.salida_hora.ToString() : "Nuevo Registro")
+        </li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Guardar", "HoraSalida", FormMethod.Post, new { id = "frm-horasalida" }))
+{
+    @Html.HiddenFor(x => x.salida_id)
+    <div class="card">
+        <div class="card-header">
+            Informacion del Hora Salida
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.salida_id, new { @class = "form-control", disabled = true })
+            </div>
+            <div class="form-group">
+                @Html.Label("Hora")
+                @Html.TextBoxFor(x => x.salida_hora, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.salida_hora, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Estado")
+                <select name="salida_estado" class="form-control">
+                    <option @(Model.salida_estado == "" ? "Selected" : "") value="">--Seleccione--</option>
+                    <option @(Model.salida_estado == "A" ? "Selected" : "") value="A">Activo</option>
+                    <option @(Model.salida_estado == "I" ? "Selected" : "") value="I">Inactivo</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="~/Ambiente" class="btn btn-danger">Cancelar</a>
+    </div>
+}

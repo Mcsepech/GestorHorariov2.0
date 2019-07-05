@@ -1,0 +1,55 @@
+﻿@model GestorHorariov2._0.Models.Ciclo
+@{
+    List<GestorHorariov2._0.Models.Ciclo> ciclo = ViewBag.Ciclo;
+    ViewBag.Title = "AgregarEditar";
+}
+
+<h2 class="card alert-light text-center" style="font-size: 48px;">Gestion de Ciclos</h2>
+
+<nav aria-label="breadcrumb" style="font-size: 24px">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/Ciclo/Index">Ciclo</a>
+        </li>
+        <li class="breadcrumb-item active">
+            @(Model.ciclo_id > 0 ? Model.ciclo_nombre : "Nuevo Registro")
+        </li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Guardar", "Ciclo", FormMethod.Post, new { id = "frm-ciclo" }))
+{
+    @Html.HiddenFor(x => x.ciclo_id)
+    <div class="card">
+        <div class="card-header">
+            Informacion del Ciclo
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ciclo_id, new { @class = "form-control", disabled = true })
+            </div>
+            <div class="form-group">
+                @Html.Label("Nombre")
+                @Html.TextBoxFor(x => x.ciclo_nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.ciclo_nombre, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Estado")
+                <select name="ciclo_estado" class="form-control">
+                    <option @(Model.ciclo_estado == "" ? "Selected" : "") value="">--Seleccione--</option>
+                    <option @(Model.ciclo_estado == "A" ? "Selected" : "") value="A">Activo</option>
+                    <option @(Model.ciclo_estado == "I" ? "Selected" : "") value="I">Inactivo</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="~/Ciclo" class="btn btn-danger">Cancelar</a>
+    </div>
+}
+

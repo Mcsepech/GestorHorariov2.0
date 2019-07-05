@@ -1,0 +1,37 @@
+﻿@model List<GestorHorariov2._0.Models.Ciclo>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1 class="card card-body" style="font-size:40px; text-align:center">Gestionar Ciclos</h1>
+<br />
+<div class="text-right">
+    <a href="~/Ciclo/AgregarEditar/" class="btn btn-secondary text-right">Nuevo Registro</a>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:50px;text-align:center">Id</th>
+            <th style="width:70px;text-align:center">Nombre</th>
+            <th style="width:80px;text-align:center">Estado</th>
+            <th style="width:150px;text-align:center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <th>@s.ciclo_id</th>
+                <th>@s.ciclo_nombre</th>
+                <th>@(s.ciclo_estado == "A" ? "Activo" : "Inactivo") </th>
+                <th style="text-align:center">
+                    <a href="~/Ciclo/Visualizar/@s.ciclo_id" class="btn btn-info btn-round"><i class="material-icons">person</i></a>
+                    <a href="~/Ciclo/AgregarEditar/@s.ciclo_id" class="btn btn-success btn-round"><i class="material-icons">edit</i></a>
+                    <a href="~/Ciclo/Eliminar/@s.ciclo_id" class="btn btn-danger btn-round" onclick="return confirm('Esta seguro de Eliminar?...')"><i class="material-icons">close</i></a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,31 @@
+﻿@model GestorHorariov2._0.Models.Ciclo
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/Ciclo/Index">Ciclo</a>
+        </li>
+        <li class="breadcrumb-item active">@Model.ciclo_nombre</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header">
+        Información detallada de los Ambientes
+    </div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.ciclo_id</dd>
+            <dt>Nombre</dt>
+            <dd>@Model.ciclo_nombre</dd>
+            <dt>Estado</dt>
+            <dd>@(Model.ciclo_estado == "A" ? "Activo" : "Inactivo")</dd>
+        </dl>
+    </div>
+</div>
+

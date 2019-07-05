@@ -1,0 +1,36 @@
+﻿@model List<GestorHorariov2._0.Models.HoraEntrada>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1 class="card card-body" style="font-size:40px; text-align:center">Gestionar Hora Entrada</h1>
+<br />
+<div class="text-right">
+    <a href="~/HoraEntrada/AgregarEditar/" class="btn btn-secondary text-right">Nuevo Registro</a>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:30px;text-align:center">Id</th>
+            <th style="width:30px;text-align:center">Hora</th>
+            <th style="width:30px;text-align:center">Estado</th>
+            <th style="width:200px;text-align:center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <th>@s.entrada_id</th>
+                <th>@s.entrada_hora</th>
+                <th>@(s.entrada_estado == "A" ? "Activo" : "Inactivo") </th>
+                <th style="text-align:center">
+                    <a href="~/HoraEntrada/Visualizar/@s.entrada_id" class="btn btn-info btn-round"><i class="material-icons">person</i></a>
+                    <a href="~/HoraEntrada/AgregarEditar/@s.entrada_id" class="btn btn-success btn-round"><i class="material-icons">edit</i></a>
+                    <a href="~/HoraEntrada/Eliminar/@s.entrada_id" class="btn btn-danger btn-round" onclick="return confirm('Esta seguro de Eliminar?...')"><i class="material-icons">close</i></a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

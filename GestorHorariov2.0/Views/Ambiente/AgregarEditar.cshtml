@@ -1,0 +1,59 @@
+﻿@model GestorHorariov2._0.Models.Ambiente
+@{
+    List<GestorHorariov2._0.Models.Ambiente> ambiente = ViewBag.Ambiente;
+    ViewBag.Title = "AgregarEditar";
+}
+
+<h2 class="card alert-light text-center" style="font-size: 48px;">Gestion de Ambiente</h2>
+
+<nav aria-label="breadcrumb" style="font-size: 24px">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/Ambiente/Index">Ambiente</a>
+        </li>
+        <li class="breadcrumb-item active">
+            @(Model.ambiente_id > 0 ? Model.ambiente_nombre : "Nuevo Registro")
+        </li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Guardar", "Ambiente", FormMethod.Post, new { id = "frm-ambiente" }))
+{
+    @Html.HiddenFor(x => x.ambiente_id)
+    <div class="card">
+        <div class="card-header">
+            Informacion del Usuario
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ambiente_id, new { @class = "form-control", disabled = true })
+            </div>
+            <div class="form-group">
+                @Html.Label("Codigo")
+                @Html.TextBoxFor(x => x.ambiente_codigo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.ambiente_codigo, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Nombre")
+                @Html.TextBoxFor(x => x.ambiente_nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.ambiente_nombre, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Estado")
+                <select name="ambiente_estado" class="form-control">
+                    <option @(Model.ambiente_estado == "" ? "Selected" : "") value="">--Seleccione--</option>
+                    <option @(Model.ambiente_estado == "A" ? "Selected" : "") value="A">Activo</option>
+                    <option @(Model.ambiente_estado == "I" ? "Selected" : "") value="I">Inactivo</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="~/Ambiente" class="btn btn-danger">Cancelar</a>
+    </div>
+}

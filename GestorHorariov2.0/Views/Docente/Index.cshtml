@@ -1,0 +1,41 @@
+﻿@model List<GestorHorariov2._0.Models.Docente>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="card text-center alert-info">Gestionar Docentes UPT</h2>
+<br />
+<div class="text-right">
+    <a href="~/Docente/AgregarEditar/" class="btn btn-secondary text-right">Nuevo Registro</a>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:50px;text-align:center">Id</th>
+            <th style="width:70px;text-align:center">Codigo Docente</th>
+            <th style="width:70px;text-align:center">Nombre</th>
+            <th style="width:70px;text-align:center">Apellido</th>
+            <th style="width:80px;text-align:center">Estado</th>
+            <th style="width:150px;text-align:center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <th>@s.docente_id</th>
+                <th>@s.docente_codigo</th>
+                <th>@s.docente_nombre</th>
+                <th>@s.docente_apellido</th>
+                <th>@(s.docente_estado == "A" ? "Activo" : "Inactivo") </th>
+                <th style="text-align:center">
+                    <a href="~/Docente/Visualizar/@s.docente_id" class="btn btn-info">Visualizar</a>
+                    <a href="~/Docente/AgregarEditar/@s.docente_id" class="btn btn-primary">Modificar</a>
+                    <a href="~/Docente/Eliminar/@s.docente_id" class="btn btn-danger" onclick="return confirm('Esta seguro de Eliminar?...')">Eliminar</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+

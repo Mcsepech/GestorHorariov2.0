@@ -1,0 +1,38 @@
+﻿@model List<GestorHorariov2._0.Models.Ambiente>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1 class="card card-body" style="font-size:40px; text-align:center">Gestionar Ambientes</h1>
+<br />
+<div class="text-right">
+    <a href="~/Ambiente/AgregarEditar/" class="btn btn-secondary text-right">Nuevo Registro</a>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:50px;text-align:center">Id</th>
+            <th style="width:10px;text-align:center">Codigo</th>
+            <th style="width:70px;text-align:center">Nombre</th>
+            <th style="width:80px;text-align:center">Estado</th>
+            <th style="width:150px;text-align:center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <th>@s.ambiente_id</th>
+                <th>@s.ambiente_codigo</th>
+                <th>@s.ambiente_nombre</th>
+                <th>@(s.ambiente_estado == "A" ? "Activo" : "Inactivo") </th>
+                <th style="text-align:center">
+                    <a href="~/Ambiente/Visualizar/@s.ambiente_id" class="btn btn-info btn-round"><i class="material-icons">person</i></a>
+                    <a href="~/Ambiente/AgregarEditar/@s.ambiente_id" class="btn btn-success btn-round"><i class="material-icons">edit</i></a>
+                    <a href="~/Ambiente/Eliminar/@s.ambiente_id" class="btn btn-danger btn-round" onclick="return confirm('Esta seguro de Eliminar?...')"><i class="material-icons">close</i></a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

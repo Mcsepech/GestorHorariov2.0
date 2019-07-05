@@ -1,0 +1,37 @@
+﻿@model List<GestorHorariov2._0.Models.Dia>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="card text-center alert-info">Gestionar Dias UPT</h2>
+<br />
+<div class="text-right">
+    <a href="~/Dia/AgregarEditar/" class="btn btn-secondary text-right">Nuevo Registro</a>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:50px;text-align:center">Id</th>
+            <th style="width:70px;text-align:center">Nombre Curso</th>
+            <th style="width:80px;text-align:center">Estado</th>
+            <th style="width:150px;text-align:center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <th>@s.dia_id</th>
+                <th>@s.dia_nombre</th>
+                <th>@(s.dia_estado == "A" ? "Activo" : "Inactivo") </th>
+                <th style="text-align:center">
+                    <a href="~/Dia/Visualizar/@s.dia_id" class="btn btn-info">Visualizar</a>
+                    <a href="~/Dia/AgregarEditar/@s.dia_id" class="btn btn-primary">Modificar</a>
+                    <a href="~/Dia/Eliminar/@s.dia_id" class="btn btn-danger" onclick="return confirm('Esta seguro de Eliminar?...')">Eliminar</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+

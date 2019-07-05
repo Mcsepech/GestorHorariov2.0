@@ -1,0 +1,54 @@
+﻿@model GestorHorariov2._0.Models.Dia
+@{
+    List<GestorHorariov2._0.Models.Dia> dia = ViewBag.Dia;
+    ViewBag.Title = "AgregarEditar";
+}
+
+<h2 class="card alert-light text-center" style="font-size: 48px;">Gestion de Dia</h2>
+
+<nav aria-label="breadcrumb" style="font-size: 24px">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/Dia/Index">Dia</a>
+        </li>
+        <li class="breadcrumb-item active">
+            @(Model.dia_id > 0 ? Model.dia_nombre : "Nuevo Registro")
+        </li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Guardar", "Dia", FormMethod.Post, new { id = "frm-dia" }))
+{
+    @Html.HiddenFor(x => x.dia_id)
+    <div class="card">
+        <div class="card-header">
+            Informacion del Dia
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.dia_id, new { @class = "form-control", disabled = true })
+            </div>
+            <div class="form-group">
+                @Html.Label("Nombre")
+                @Html.TextBoxFor(x => x.dia_nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.dia_nombre, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Estado")
+                <select name="dia_estado" class="form-control">
+                    <option @(Model.dia_estado == "" ? "Selected" : "") value="">--Seleccione--</option>
+                    <option @(Model.dia_estado == "A" ? "Selected" : "") value="A">Activo</option>
+                    <option @(Model.dia_estado == "I" ? "Selected" : "") value="I">Inactivo</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="~/Dia" class="btn btn-danger">Cancelar</a>
+    </div>
+}

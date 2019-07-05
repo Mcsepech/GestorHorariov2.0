@@ -1,0 +1,173 @@
+﻿@model List<GestorHorariov2._0.Models.CargaDocenteCicloCurso>
+@{
+    List<GestorHorariov2._0.Models.Ambiente> ambiente = ViewBag.Ambiente;
+    List<GestorHorariov2._0.Models.Dia> dia = ViewBag.Dia;
+    List<GestorHorariov2._0.Models.HoraEntrada> horaentrada = ViewBag.HoraEntrada;
+    List<GestorHorariov2._0.Models.HoraSalida> horasalida = ViewBag.HoraSalida;
+    ViewBag.Title = "Gestion de Horario";
+    string ciclo = ViewBag.Ciclo;
+}
+
+<h2>DetalleCurso</h2>
+
+
+@*@using (Html.BeginForm("GuardarCurso", "CargaHorariaDocente", FormMethod.Post, new { id = "frm-cargahorariadocente" }))
+    {*@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("Seleccione un curso")
+                    <select id="carga_id" class="form-control" onchange="actualizarHoras(this)">
+                        @if (Model.Count <= 0)
+                        {
+                            <option>No hay cursos con horas libres</option>
+                        }
+                        else
+                        {
+                            <option>--Seleccione</option>
+                            foreach (var m in Model)
+                            {
+                                <option value="@m.carga_id">@m.Curso.curso_nombre</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("Seleccione el Dia:")
+                    <select id="dia_id" class="form-control">
+                        <option>--Seleccione</option>
+                        @foreach (var d in dia)
+                        {
+                            <option value="@d.dia_id">@d.dia_nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("Seleccione el salon:")
+                    <select id="ambiente_id" class="form-control">
+                        <option>--Seleccione</option>
+                        @foreach (var a in ambiente)
+                        {
+                            <option value="@a.ambiente_id">@a.ambiente_nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("Seleccione la hora de entrada:")
+                    <select id="entrada_id" class="form-control">
+                        <option>--Seleccione</option>
+                        @foreach (var e in horaentrada)
+                        {
+                            <option value="@e.entrada_id">@e.entrada_hora</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.Label("Seleccione la hora de salida:")
+                    <select id="salida_id" class="form-control">
+                        <option>--Seleccione</option>
+                        @foreach (var s in horasalida)
+                        {
+                            <option value="@s.salida_id">@s.salida_hora</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            @*<div class="col-sm-4">
+                    <div class="form-group">
+                        @Html.Label("Estado")
+                        <select id="carga_estado" class="form-control">
+                            <option value="">--Seleccione--</option>
+                            <option value="A">Activo</option>
+                            <option value="I">Inactivo</option>
+                        </select>
+                    </div>
+                </div>*@
+            <div class="col-sm-8" id="horas_grupo">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="text-center">
+    <button type="submit" class="btn btn-primary" id="boton" onclick="prueba()">Guardar</button>
+    <a href="~/CargaHorariaDocente" class="btn btn-danger">Cancelar</a>
+</div>
+@*}*@
+<div>
+    @Html.Action("_Horario", "CargaHorariaDocente", new { codigo = ciclo.ToString() })
+</div>
+
+<script type="text/javascript">
+    function actualizarHoras(sel) {
+        var cargaID = sel.value;
+        $("#horas_grupo").load("/CargaDocenteCicloCurso/_Horas", { carga_id: cargaID });
+    }
+
+    function prueba() {
+        var hora_libre = $('#hora_lib').val()
+        var hora_ocupada = $('#hora_ocu').val()
+
+        var carga_id = $('#carga_id').val();
+        var ambiente_id = $('#ambiente_id').val();
+        var entrada_id = $('#entrada_id').val();
+        var salida_id = $('#salida_id').val();
+        var dia_id = $('#dia_id').val();
+        var carga_estado = "A";
+
+        var entrada_index = document.getElementById("entrada_id").selectedIndex;
+        var entrada_option = document.getElementById("entrada_id").options;
+
+        var salida_index = document.getElementById("salida_id").selectedIndex;
+        var salida_option = document.getElementById("salida_id").options;
+
+        var hora_entrada = entrada_option[entrada_index].text;
+        var hora_salida = salida_option[salida_index].text;
+
+
+
+        if (hora_libre != 0) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GuardarCurso", "CargaHorariaDocente")',
+                data: {
+                    carga_id: carga_id,
+                    ambiente_id: ambiente_id,
+                    entrada_id: entrada_id,
+                    salida_id: salida_id,
+                    dia_id: dia_id,
+                    carga_estado: carga_estado,
+                    hora_entrada: hora_entrada,
+                    hora_salida: hora_salida,
+                    hora_ocu: hora_ocupada,
+                    hora_lib: hora_libre
+                },
+                success: function () {
+                    alert("Guardado con éxito.");
+                    location.reload();
+                },
+                error: function () {
+                    alert("Error al registrar.");
+                }
+            })
+        }
+        else {
+            alert("Ya no hay horas libres del curso");
+        }
+    }
+</script>
+
+

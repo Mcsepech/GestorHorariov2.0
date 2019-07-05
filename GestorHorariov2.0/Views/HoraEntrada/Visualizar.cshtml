@@ -1,0 +1,30 @@
+﻿@model GestorHorariov2._0.Models.HoraEntrada
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/HoraEntrada/Index">Hora Entrada</a>
+        </li>
+        <li class="breadcrumb-item active">@Model.entrada_hora.ToString()</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header">
+        Información detallada de los Hora Entrada
+    </div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.entrada_id</dd>
+            <dt>Nombre</dt>
+            <dd>@Model.entrada_hora</dd>
+            <dt>Estado</dt>
+            <dd>@(Model.entrada_estado == "A" ? "Activo" : "Inactivo")</dd>
+        </dl>
+    </div>
+</div>
+

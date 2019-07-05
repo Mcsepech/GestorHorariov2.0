@@ -1,0 +1,30 @@
+﻿@model GestorHorariov2._0.Models.Dia
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/Dia/Index">Dia</a>
+        </li>
+        <li class="breadcrumb-item active">@Model.dia_nombre</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header">
+        Información detallada de los Ambientes
+    </div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.dia_id</dd>
+            <dt>Nombre</dt>
+            <dd>@Model.dia_nombre</dd>
+            <dt>Estado</dt>
+            <dd>@(Model.dia_estado == "A" ? "Activo" : "Inactivo")</dd>
+        </dl>
+    </div>
+</div>
+
